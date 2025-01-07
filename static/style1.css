@@ -1,0 +1,159 @@
+/* Basic reset (optional, but good practice) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    margin: 20px; /* Add some margin to the body */
+    margin-top: 150px;
+}
+
+.gradient_text {
+    background-image: linear-gradient(to right, #ff4d00, #8204ff 80%, #a37eff);
+    color: transparent;
+    background-clip: text;
+}
+
+h1 {
+    text-align: center;
+    font-family: "Manrope", serif;
+    font-size: 3.5rem;
+    line-height: 4rem;
+    color: #0f172a;
+}
+
+h2, h3 {
+    margin-bottom: 10px;
+}
+
+/* Styling for the main form */
+form {
+    margin-bottom: 50px;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+label {
+    display: block; /* Make labels stack above inputs */
+    font-family: "Manrope", serif;
+    color: #9ca3af;
+    margin-bottom: 10px;
+    font-size: 1.25rem;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 25px;
+    font-family: "Manrope", serif;
+    letter-spacing: 2px;
+}
+
+.submit_button {
+    background-color: #0f172a;
+    color: white;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: "Manrope", serif;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    padding: 1rem 1.5rem;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.submit_button:hover {
+    background-color: #ff4d00;
+}
+
+
+
+.recipes-container-text {
+    text-align: center;
+    font-family: "Manrope", serif;
+    color: #0f172a;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+
+
+/* Basic card styles */
+#recipes-container { /* Or use a more specific class if needed */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    grid-gap: 20px; /* Spacing between cards */
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.recipe-card {
+    border: 1px solid #e5e7eb;
+    padding: 15px;
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden; /* Prevent image overflow */
+    cursor: pointer;
+    text-decoration: none;
+    color: #0f172a;
+    font-family: "Manrope", serif;
+    transition: background-color 0.3s ease-in-out;
+    transition: border 0.5s ease-in-out;
+}
+
+.recipe-card:hover {
+    background-color: #ff4d000a;
+    border: 1px solid #ff4d00;
+}
+
+.recipe-image {
+    width: 100%;   /* Make image responsive */
+    height: 200px;  /* Set a fixed height or max-height */
+    object-fit: cover; /* Maintain aspect ratio and cover the area */
+    display: block;  /* Prevent image from creating extra space */
+    margin-bottom: 15px; /* Space below the image */
+    border-radius: 15px;
+}
+
+.recipe-description {
+    margin-bottom: 10px; /* Space below the description */
+}
+
+.recipe-button {
+    /* ... styles from previous example */
+    display: inline-block; 
+    padding: 8px 12px; 
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+
+
+.text-overlay {
+    position: fixed; /* Fixed positioning to stay on screen */
+    bottom: 20px; /* Adjust distance from bottom */
+    right: 20px;   /* Adjust distance from right */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    color: white;    /* White text */
+    font-family: "Manrope", serif;
+    padding: 10px 15px;
+    border-radius: 10px; /* Rounded corners */
+    z-index: 1000;   /* Ensure overlay is on top */
+    display: flex;  /* Align items in one row */
+    gap: 10px       /* Set gap between text */
+    user-select: none; /* Prevent text selection */
+    -webkit-user-select: none; /* For older WebKit browsers (Safari) */
+    -moz-user-select: none;    /* For Firefox */
+    -ms-user-select: none;
+}
