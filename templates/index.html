@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Indian Cuisine Recipe Recommender</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Figtree:ital,wght@0,300..900;1,300..900&family=Manrope:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+<body>
+    <h1>Indian Cuisine<br>Recipe <span class="gradient_text">Recommender</span></h1>
+
+    <br><br>
+
+    <form method="POST" action="/">
+        <label for="ingredients">Enter ingredients (comma-separated)</label>
+        <textarea id="ingredients" name="ingredients" rows="1" cols="50"></textarea><br><br>
+        <input type="submit" value="Get Recommendations" class="submit_button">
+    </form>
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+
+    <h2 class="recipes-container-text"><span class="gradient_text">Discover</span> New Recipes</h2>
+
+    <div id="recipes-container">
+    </div>
+
+
+    <script>
+        const recipes = {{ recipes_json | safe }};
+        const container = document.getElementById('recipes-container');
+
+        displayRecipes(recipes);
+
+
+        function displayRecipes(recipesToDisplay) {
+            container.innerHTML = ''; // Clear existing content
+
+            recipesToDisplay.forEach(recipe => {
+                const recipeDiv = document.createElement('div');
+                recipeDiv.className = 'recipe-item';
+
+                const header = document.createElement('div');
+                header.className = 'recipe-header';
+                header.textContent = recipe.name;  // Only recipe name initially
+                header.addEventListener('click', () => toggleDetails(recipeDiv)); // Add click listener
+
+
+                const details = document.createElement('div');
+                details.className = 'recipe-details';
+                details.style.display = 'none'; // Initially hidden
+
+                const image = document.createElement('img');
+                image.src = recipe.image_url;
+                image.alt = recipe.name;
+                image.className = 'recipe-image';
+
+
+                const description = document.createElement('p');
+                description.textContent = recipe.description;
+                description.className = "recipe-description";
+
+
+                const button = document.createElement('a');  // Create the button/link
+                button.href = `/recipe/${recipe.name}`;
+                button.className = 'recipe-button';        // Apply CSS class
+                button.textContent = 'View Recipe';
+
+
+                // Append elements to detail div
+                details.appendChild(image);
+                details.appendChild(description);
+                details.appendChild(button);
+
+
+                // Append the header and details divs to main recipeDiv
+                recipeDiv.appendChild(header);
+                recipeDiv.appendChild(details);
+
+                container.appendChild(recipeDiv);
+
+            })
+            ;
+        }
+
+        function displayRecipes(recipesToDisplay) {
+            container.innerHTML = ''; // Clear previous recipes
+
+            recipesToDisplay.forEach(recipe => {
+                const recipeCard = document.createElement('a'); // Make card a link
+                recipeCard.href = `/recipe/${recipe.name}`;  // Set link
+                recipeCard.className = 'recipe-card';
+
+                const image = document.createElement('img');
+                image.src = recipe.image_url;
+                image.alt = recipe.name;
+                image.className = 'recipe-image';
+
+                const title = document.createElement('h3');
+                title.textContent = recipe.name;
+
+                const description = document.createElement('p');
+                description.textContent = recipe.description;
+                description.className = 'recipe-description';
+
+
+                // Append elements to the card (no button)
+                recipeCard.appendChild(image);
+                recipeCard.appendChild(title);
+                recipeCard.appendChild(description);
+
+
+                container.appendChild(recipeCard);
+            });
+        }
+    </script>
+
+    <div class="text-overlay">
+        <p>Developed by Priyanuj Boruah</p>
+    </div>
+</body>
+</html>
