@@ -1,0 +1,63 @@
+Essential Files:
+
+app.py (or main.py): This remains your main application file.
+
+    Purpose:
+    Initializes the Flask application.
+    Loads the CSV file into a Pandas DataFrame once when the application starts.
+    Defines the Flask routes (@app.route).
+    Starts the Flask development server.
+
+routes.py (or views.py): This file handles your application's logic for different URLs (routes).
+
+    Purpose:
+    Contains the functions that are executed when a user visits a specific URL on your website.
+    Manages incoming HTTP requests, accesses the in-memory Pandas DataFrame, and passes data to the template files.
+    Routes for homepage (ingredient input), recommendations, and potential details page will be defined here.
+
+recommendation.py (or recommender.py): This file contains the logic for the recommendation engine.
+
+    Purpose:
+    Houses the functions and algorithms for processing user input ingredients and filtering/ranking recipes from the Pandas DataFrame.
+    Should be focused on data manipulation with the DataFrame.
+    Potentially Separate Files (Depending on Complexity):
+
+utils.py (or helpers.py): This file can contain utility functions used across different parts of the application.
+
+    Purpose:
+    Functions for tasks like:
+    Parsing the ingredient strings.
+    Data cleaning and preprocessing.
+    Any other reusable logic that doesn't fit neatly into the other files.
+
+forms.py: (Optional) If you are still using Flask-WTF or a similar library for web forms.
+
+
+
+Frontend Files (Not Python, but essential):
+
+HTML Templates (e.g., in a templates folder):
+
+index.html (homepage with ingredient input).
+
+recommendations.html (displaying recommended recipes).
+
+(Optional) recipe_detail.html.
+
+
+Static Files (e.g., in a static folder):
+
+style.css (for styling your website).
+
+script.js (for any client-side JavaScript).
+
+recipe_recommender/
+├── app.py
+├── routes.py
+├── recommendation.py
+├── utils.py        # Optional
+├── templates/
+│   ├── index.html
+│   └── recommendations.html
+└── static/
+    └── style.css
